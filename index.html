@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Westbridge University · Student Portal</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--bg:#1c1e22;--s1:#25282d;--s2:#2f333a;--line:#3d424b;--tx:#e8eaed;--mu:#9aa0aa;--gold:#c9a45c;--gold2:#e3c98f;--ok:#7fc8a0;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#e4e6e9;--s1:#f3f4f6;--s2:#dcdfe3;--line:#c2c6cc;--tx:#23262b;--mu:#5c626c;--gold:#8f6f2c;--gold2:#6d5220;--ok:#2e7d55;color-scheme:light}}
+:root[data-theme="light"]{--bg:#e4e6e9;--s1:#f3f4f6;--s2:#dcdfe3;--line:#c2c6cc;--tx:#23262b;--mu:#5c626c;--gold:#8f6f2c;--gold2:#6d5220;--ok:#2e7d55;color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.55 "DM Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","DM Sans",sans-serif;margin:0;line-height:1.1}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;padding:10px 20px;background:var(--s1);border-bottom:1px solid var(--line)}
+.top b{font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
+.crest{width:30px;height:30px;border-radius:7px;background:var(--gold);color:#1c1e22;display:grid;place-items:center;font:800 18px "Bricolage Grotesque",serif}
+.top nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto}
+.top nav a{padding:6px 12px;border-radius:8px;text-decoration:none;color:var(--mu);font-size:14px;white-space:nowrap}
+.top nav a:hover{background:var(--s2);color:var(--tx)}
+#th{border:1px solid var(--line);background:var(--s2);border-radius:8px;padding:5px 10px;font-size:13px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.hero{position:relative;min-height:380px;display:flex;align-items:flex-end;background:#111 center/cover url(url("assets/campus-hero.jpg"))}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,30,34,.15),var(--bg))}
+.hero .wrap{position:relative;z-index:1;padding-bottom:28px;width:100%}
+.hero h1{font-size:clamp(34px,6vw,64px);font-weight:800;color:#f1f2f4}
+.hero p{max-width:560px;color:#d6d9de;margin:10px 0 18px}
+.chip{display:inline-block;padding:3px 10px;border:1px solid var(--line);border-radius:99px;font-size:12px;color:var(--mu);background:var(--s1)}
+.live{color:var(--ok);border-color:var(--ok)}
+.btn{display:inline-block;background:var(--gold);color:#1c1e22;font-weight:700;border:0;border-radius:10px;padding:10px 18px;text-decoration:none}
+.tick{background:var(--s2);border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;font-size:14px}
+.tick div{display:inline-block;padding:9px 0;animation:mq 60s linear infinite}
+.tick span{margin:0 28px;color:var(--mu)}.tick em{font-style:normal;color:var(--gold2);font-weight:700}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:46px 0 6px}
+h2{font-size:28px;margin-bottom:6px}.sub{color:var(--mu);margin:0 0 20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.stat{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat b{display:block;font:800 26px "Bricolage Grotesque",sans-serif;color:var(--gold2)}
+.stat small{color:var(--mu)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{background:var(--s1);border:1px solid var(--line);border-radius:99px;padding:6px 14px}
+.filters button[aria-pressed=true]{background:var(--gold);color:#1c1e22;border-color:var(--gold);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:16px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-align:left;padding:0;display:flex;flex-direction:column}
+.card:hover{border-color:var(--gold)}
+.card img{width:100%;aspect-ratio:4/4.4;object-fit:cover;object-position:top;display:block;background:var(--s2)}
+.card .in{padding:12px 14px 14px}
+.card h3{font-size:19px}.card .rl{color:var(--gold2);font-size:13px;font-weight:700;margin:2px 0 6px}
+.card p{margin:0;color:var(--mu);font-size:14px}
+.id{display:flex;justify-content:space-between;font-size:12px;color:var(--mu);margin-top:10px;border-top:1px dashed var(--line);padding-top:8px}
+dialog{border:1px solid var(--line);background:var(--s1);color:var(--tx);border-radius:16px;padding:0;max-width:760px;width:calc(100% - 28px)}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+.dl{display:grid;grid-template-columns:260px 1fr}
+.dl img{width:100%;height:100%;object-fit:cover;object-position:top;min-height:300px}
+.dl .tx{padding:22px}.dl h2{font-size:26px}
+.dl dl{display:grid;grid-template-columns:92px 1fr;gap:6px 10px;margin:14px 0;font-size:14px}.dl dt{color:var(--mu)}.dl dd{margin:0}
+.q{border-left:3px solid var(--gold);padding-left:12px;font-style:italic;margin:14px 0}
+.x{float:right;background:var(--s2);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.box{background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:18px}
+.box h3{font-size:19px;margin-bottom:10px}
+.post{border-top:1px solid var(--line);padding:10px 0;font-size:15px}.post:first-of-type{border:0}
+.post small{display:block;color:var(--mu)}
+.map li{margin:6px 0}
+ul{margin:0;padding-left:18px}
+footer{margin-top:50px;border-top:1px solid var(--line);padding:22px 0 30px;color:var(--mu);font-size:13px}
+@media (max-width:640px){.dl{grid-template-columns:1fr}.dl img{height:280px}.top nav a:nth-child(n+4){display:none}}
+@media (prefers-reduced-motion:reduce){.tick div{animation:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="crest">W</div><b>Westbridge Portal</b>
+  <nav><a href="#feed">Feed</a><a href="#directory">Directory</a><a href="#campus">Campus</a><a href="#web">Who’s who</a></nav>
+  <button id="th" aria-label="Toggle light or dark">Theme</button>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="chip live">● Fall semester · now open</span>
+    <h1>Welcome back to Westbridge.</h1>
+    <p>Eight students, one old-money campus, and a gossip page that knows everything. Browse the directory, pick a student, and step into the story.</p>
+    <a class="btn" href="#directory">Open student directory</a>
+  </div>
+</div>
+
+<div class="tick" aria-label="Campus announcements"><div id="tk"></div></div>
+
+<main class="wrap">
+  <section>
+    <div class="stats">
+      <div class="stat"><b>8</b><small>featured students</small></div>
+      <div class="stat"><b>1</b><small>anonymous gossip page</small></div>
+      <div class="stat"><b>3</b><small>blocks in Hawthorne Hall</small></div>
+      <div class="stat"><b>May</b><small>graduation, ready or not</small></div>
+    </div>
+  </section>
+
+  <section id="feed">
+    <h2>Campus feed</h2>
+    <p class="sub">Official notices on the left. The unofficial version on the right.</p>
+    <div class="two">
+      <div class="box"><h3>Official notices</h3>
+        <div class="post">SGA town hall on student funding, Friday 4 PM<small>Posted by Student Government Association</small></div>
+        <div class="post">Volleyball home opener: wear navy and gold<small>Athletics</small></div>
+        <div class="post">Football open practice and spare-tape drive<small>Westbridge Football</small></div>
+        <div class="post">Redline Motor Works is hiring weekend help<small>Career Services</small></div>
+      </div>
+      <div class="box"><h3>@wb.afterhours <span class="chip">unverified</span></h3>
+        <div class="post">Who left Thursday’s party in a hurry after one particular sighting?<small>12 submissions · 3 screenshots</small></div>
+        <div class="post">Cheer practice has a new rule: smile when he walks by.<small>anonymous tip</small></div>
+        <div class="post">The SGA president’s “private” meeting ran very long.<small>source: “trust me”</small></div>
+        <div class="post">Quiet #8 got a hoodie borrowed again. Details soon.<small>developing</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="directory">
+    <h2>Student directory</h2>
+    <p class="sub">Tap a card to open the full profile.</p>
+    <div class="filters" id="fl"></div>
+    <div class="grid" id="gr"></div>
+  </section>
+
+  <section id="campus">
+    <h2>Campus map</h2>
+    <p class="sub">Where scenes tend to happen.</p>
+    <div class="two">
+      <div class="box"><h3>Hangouts</h3><ul class="map">
+        <li><b>Student union café.</b> Iced vanilla lattes and people-watching.</li>
+        <li><b>Union upper lounge.</b> Meetings, plans and a very good view.</li>
+        <li><b>Café terrace.</b> Brunch, status and eavesdropping.</li>
+        <li><b>Recreation lounge.</b> Games, basketball talk and loud laughter.</li>
+        <li><b>Common-room sofa.</b> Best seat for overhearing drama.</li>
+      </ul></div>
+      <div class="box"><h3>Hawthorne Hall</h3><ul class="map">
+        <li><b>Block A:</b> A-129 Charlotte · A-355 Emily</li>
+        <li><b>Block B:</b> B-314 Nico · B-418 William</li>
+        <li><b>Block C:</b> C-208 Damien · C-327 Malik</li>
+        <li><b>Block D:</b> D-312 Jamie</li>
+        <li><b>Off campus:</b> Olivia’s apartment, 15 minutes away</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="web">
+    <h2>Who’s who</h2>
+    <p class="sub">The connections everybody already whispers about.</p>
+    <div class="two">
+      <div class="box"><h3>Open threads</h3><ul>
+        <li>Olivia says she is over William. Nobody believes her.</li>
+        <li>Charlotte wants Nico and will be very sweet about it.</li>
+        <li>Emily runs the gossip page, and her friends keep sending her tips.</li>
+        <li>William’s family keeps his messes out of the news.</li>
+        <li>Malik knows everyone and teases the wealthy ones.</li>
+      </ul></div>
+      <div class="box"><h3>Pick your path</h3><ul>
+        <li>Join as a new student and pick a circle.</li>
+        <li>Play one of the eight and bring your own plot.</li>
+        <li>Be the person who finds out who runs the page.</li>
+      </ul><p style="margin:14px 0 0"><a class="btn" href="#directory">Choose a student</a></p></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Westbridge University · fictional campus for roleplay · all characters are adults (21–22).</div></footer>
+
+<dialog id="dg"><div class="dl"><img id="di" alt=""><div class="tx">
+  <button class="x" id="cx">Close</button>
+  <h2 id="dn"></h2><div class="rl chip" id="dr"></div>
+  <dl id="dd"></dl><div class="q" id="dq"></div><p id="db" style="color:var(--mu);margin:0"></p>
+</div></div></dialog>
+
+<script>var IMG={"malik": "assets/characters/malik.jpg", "emily": "assets/characters/emily.jpg", "jamie": "assets/characters/jamie.jpg", "william": "assets/characters/william.jpg", "charlotte": "assets/characters/charlotte.jpg", "nico": "assets/characters/nico.jpg", "olivia": "assets/characters/olivia.jpg", "damien": "assets/characters/damien.jpg"};</script>
+<script>
+var P=[
+{k:"William Harrington",i:"william",g:"sga",r:"SGA President",y:"22 · Business, senior",rm:"B-418",t:"Polished in public, calculating in private.",q:"Let’s not make this bigger than it needs to be.",d:"Navy varsity jacket, iced Americano, rich family that fixes problems quietly. Wants to lead without leaning on his father.",tags:["Leader","Wealthy","Controlling"]},
+{k:"Olivia Whitmore",i:"olivia",g:"social",r:"Communications, junior",y:"21 · Comms & Media, third year",rm:"Off-campus apartment",t:"Red-haired, flirty and not over her ex.",q:"I’m literally so over him. Can we talk about something else?",d:"Burgundy tops, Burberry Her Elixir and a camera roll full of old photos. Posts to provoke, hurts in private.",tags:["Flirty","Jealous","Sentimental"]},
+{k:"Nicolas “Nico” Valentino",i:"nico",g:"sports",r:"Football captain · #11",y:"22 · Business, senior",rm:"B-314",t:"Cocky wingback with a moustache and a soft spot.",q:"You could just admit I’m right.",d:"Hazel eyes, hot sauce on everything, and a reputation bigger than his love life. Loses badly, learns slowly.",tags:["Athlete","Teasing","Captain"]},
+{k:"Charlotte Hayes",i:"charlotte",g:"social",r:"Senior cheerleader",y:"21 · PR & Strategic Comms, senior",rm:"A-129",t:"Sweet to his face, ruthless behind it.",q:"Be serious.",d:"Quiet luxury, wispy lashes and a plan to be Nico’s girl. Always has an innocent explanation ready.",tags:["Mean girl","Image","Obsessed"]},
+{k:"Damien Cross",i:"damien",g:"loner",r:"Motorcycle mechanic",y:"22 · Mechanical Engineering, senior",rm:"C-208",t:"Cold stare, tired hands, proud to the bone.",q:"I didn’t ask for your opinion.",d:"Leather jacket, Yamaha MT-03, two jobs of worry. Not rich, not reckless, just stubborn about help.",tags:["Biker","Scholarship","Protective"]},
+{k:"Jamie “Jay” Parker",i:"jamie",g:"sports",r:"Volleyball · #8",y:"21 · Kinesiology, senior",rm:"D-312",t:"Quiet outside hitter everyone somehow knows.",q:"You’re overthinking it.",d:"Blonde pixie cut, blue eyes, K-dramas and a dry stare. Shows love with snacks and borrowed hoodies. Raised by her grandparents, Helen and Robert Lindqvist, and calls them after every big match.",tags:["Athlete","Dry humour","Loyal"]},
+{k:"Emily Miller",i:"emily",g:"gossip",r:"Runs @wb.afterhours",y:"21 · Journalism, senior",rm:"A-355",t:"Thrift-store queen with the campus’s biggest secret.",q:"Girl, I have TEA.",d:"Rugby stripes, vanilla mists and dozens of unfinished drafts. Cannot keep a juicy secret for long.",tags:["Gossip","Thrifted","Nosy"]},
+{k:"Malik “Mal” Carter",i:"malik",g:"social",r:"Event promoter",y:"22 · Comms & Media, senior",rm:"C-327",t:"Born first, acts youngest, loved by everyone.",q:"Bro, relax. It’s never that serious.",d:"Gold chain, loud laugh and a playlist for every outfit. Parties hard, shows up when it counts.",tags:["Party","Loud","Loyal"]}
+];
+var F=[["all","Everyone"],["sga","Leaders"],["sports","Athletes"],["social","Social circle"],["gossip","Gossip"],["loner","Outsiders"]];
+var tk=["Midterm week begins Monday","SGA town hall Friday","Volleyball opener under the lights","Football captain seen carrying athletic tape again","Cafés out of iced vanilla lattes by 10 AM","Someone is reading the gossip page in lecture","Redline Motor Works needs a weekend hand"];
+var T=document.getElementById("tk"),h="";
+tk.concat(tk).forEach(function(s){h+="<span><em>NEWS</em> "+s+"</span>"});T.innerHTML=h;
+var gr=document.getElementById("gr"),fl=document.getElementById("fl"),cur="all";
+function draw(){gr.innerHTML="";P.forEach(function(p,n){if(cur!="all"&&p.g!=cur)return;
+var b=document.createElement("button");b.className="card";
+b.innerHTML='<img alt="'+p.k+'" src="'+IMG[p.i]+'"><div class="in"><h3>'+p.k.split(" ")[0]+'</h3><div class="rl">'+p.r+'</div><p>'+p.t+'</p><div class="id"><span>'+p.rm+'</span><span>'+p.tags[0]+'</span></div></div>';
+b.onclick=function(){open_(p)};gr.appendChild(b)})}
+F.forEach(function(f){var b=document.createElement("button");b.textContent=f[1];b.setAttribute("aria-pressed",f[0]==cur);
+b.onclick=function(){cur=f[0];[].forEach.call(fl.children,function(c){c.setAttribute("aria-pressed",c===b)});draw()};fl.appendChild(b)});
+var dg=document.getElementById("dg");
+function open_(p){document.getElementById("di").src=IMG[p.i];document.getElementById("dn").textContent=p.k;document.getElementById("dr").textContent=p.r;
+document.getElementById("dd").innerHTML="<dt>Year</dt><dd>"+p.y+"</dd><dt>Room</dt><dd>"+p.rm+"</dd><dt>Vibe</dt><dd>"+p.tags.join(", ")+"</dd>";
+document.getElementById("dq").textContent="“"+p.q+"”";document.getElementById("db").textContent=p.d;dg.showModal()}
+document.getElementById("cx").onclick=function(){dg.close()};
+dg.addEventListener("click",function(e){if(e.target===dg)dg.close()});
+document.getElementById("th").onclick=function(){var r=document.documentElement,l=getComputedStyle(r).colorScheme.indexOf("light")>-1;r.setAttribute("data-theme",l?"dark":"light")};
+draw();
+</script>
+</body>
+</html>
